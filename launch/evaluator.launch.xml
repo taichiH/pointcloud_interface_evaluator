@@ -1,0 +1,21 @@
+<launch>
+    <node name="evaluator_pcl" pkg="pointcloud_interface_evaluator" exec="evaluator_node" output="screen">
+        <remap from="~/input" to="/sensing/lidar/top/pointcloud_raw" />
+        <param name="use_pcl" value="true" />
+    </node>
+
+    <node name="evaluator_wrapper" pkg="pointcloud_interface_evaluator" exec="evaluator_node" output="screen" >
+        <remap from="~/input" to="/sensing/lidar/top/pointcloud_raw" />
+        <param name="use_wrapper" value="true" />
+    </node>
+
+    <node name="evaluator_nothing" pkg="pointcloud_interface_evaluator" exec="evaluator_node" output="screen">
+        <remap from="~/input" to="/sensing/lidar/top/pointcloud_raw" />
+        <param name="use_nothing" value="true" />
+    </node>
+
+    <node name="evaluator_only_itr" pkg="pointcloud_interface_evaluator" exec="evaluator_node" output="screen">
+        <remap from="~/input" to="/sensing/lidar/top/pointcloud_raw" />
+        <param name="use_only_itr" value="true" />
+    </node>
+</launch>
