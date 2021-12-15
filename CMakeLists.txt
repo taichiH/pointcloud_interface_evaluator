@@ -7,6 +7,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake_auto REQUIRED)
+find_package(Boost REQUIRED)
 find_package(PCL REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(pcl_conversions REQUIRED)
@@ -21,14 +22,16 @@ include_directories(
 ament_auto_add_library(pointcloud_interface_evaluator SHARED
   src/evaluator.cpp
 )
-
 target_link_libraries(pointcloud_interface_evaluator
   ${PCL_LIBRARIES}
 )
-
 rclcpp_components_register_node(pointcloud_interface_evaluator
   PLUGIN "pointcloud_interface_evaluator::Evaluator"
   EXECUTABLE evaluator_node)
+
+ament_auto_add_executable(test_wrapper
+  src/test.cpp
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
